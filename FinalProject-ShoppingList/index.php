@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edit this template
--->
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -10,7 +6,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
     </head>
     <body>
         <?php
-        // put your code here
+        echo "this is the start of the project";
         ?>
     </body>
 </html>
