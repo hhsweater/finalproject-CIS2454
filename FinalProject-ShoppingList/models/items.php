@@ -1,6 +1,6 @@
 <?php
 
-class stores {
+class items {
     
     private $id, $store_id, $name, $quantity, $checked;
     
