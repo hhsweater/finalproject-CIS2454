@@ -2,7 +2,7 @@
 
 class stores {
     
-    private $id, $store_id, $name, $quantity, $checked;
+    private $id, $name;
     
     public function __construct($id,$name) {
         
