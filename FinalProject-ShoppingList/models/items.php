@@ -1,7 +1,8 @@
 <?php
 
-class items {
-    
+require 'database.php';
+
+class Items {
     private $id, $store_id, $name, $quantity, $checked;
     
     public function __construct($id, $store_id, $name, $quantity, $checked) {
