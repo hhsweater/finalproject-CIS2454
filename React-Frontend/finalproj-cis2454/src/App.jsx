@@ -3,30 +3,63 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
+import axios from 'axios';
+import cors from 'cors';
 
 function App() {
   const [count, setCount] = useState(0)
+  const [itemsInput, setItemsInput] = useState({store_id: '', name: '', quantity:'', checked:''})
+  const [storesInput, setStoresInput] = useState({name:''})
+
+  const handleItemsChange = (e) => {
+    setItemsInput({...itemsInput, [e.target.name]: e.target.value})
+  }
+
+  const handleStoresChange = (e) => {
+    setStoresInput({...storesInput, [e.target.name]: e.target.value})
+  }
+
+  const handleItemsSubmit = async (e) => { //using axios to send the POST request
+    e.preventDefault();
+    try {
+      await axios.post('http://localhost:5080/FinalProject-ShoppingList/models/items_1.php', itemsInput)
+      alert('Item Success!')
+      setItemsInput({store_id: '', name: '', quantity:'', checked:''})
+    }catch(error){
+      console.error('Error:', error)
+    }
+  }
+
+  const handleStoresSubmit = async (e) => { //using axios to send the POST request
+    e.preventDefault();
+    try {
+      await axios.post('http://localhost:5080/FinalProject-ShoppingList/models/stores_1.php', storesInput)
+      alert('Store Success!')
+      setStoresInput({name: ''})
+    }catch(error){
+      console.error('Error:', error)
+    }
+  }
+  
 
   return (
     <>
       <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
+        <form onSubmit={handleItemsSubmit}>
+          <label>Store ID</label>
+          <input type="number" name="store_id" placeholder="" value={itemsInput.store_id} onChange={handleItemsChange}/>
+          <br/>
+          <label>Item Name</label>
+          <input type="text" name="name" placeholder="Item Name" value={itemsInput.name} onChange={handleItemsChange}/>
+          <br/>
+          <label>Item Quantity</label>
+          <input type="number" name="quantity" placeholder="" value={itemsInput.quantity} onChange={handleItemsChange}/>
+          <br/>
+          <label>Checked? Y/N</label>
+          <input type="number" name="checked" placeholder="" value={itemsInput.checked} onChange={handleItemsChange}/>
+          <br/>
+          <button type="submit">Submit</button>
+        </form>
       </section>
 
       <div className="ticks"></div>
@@ -36,20 +69,16 @@ function App() {
           <svg className="icon" role="presentation" aria-hidden="true">
             <use href="/icons.svg#documentation-icon"></use>
           </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
+          <h2>Github</h2>
+          <p>View the Github repository for this project</p>
           <ul>
             <li>
-              <a href="https://vite.dev/" target="_blank">
+              <a href="https://github.com/hhsweater/finalproject-CIS2454" target="_blank">
                 <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
+                Github Link
               </a>
             </li>
             <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
             </li>
           </ul>
         </div>
@@ -57,11 +86,11 @@ function App() {
           <svg className="icon" role="presentation" aria-hidden="true">
             <use href="/icons.svg#social-icon"></use>
           </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
+          <h2>Connect with ME</h2>
+          <p>My Links</p>
           <ul>
             <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
+              <a href="https://github.com/hhsweater" target="_blank">
                 <svg
                   className="button-icon"
                   role="presentation"
@@ -73,7 +102,7 @@ function App() {
               </a>
             </li>
             <li>
-              <a href="https://chat.vite.dev/" target="_blank">
+              <a href="https://discord.com" target="_blank">
                 <svg
                   className="button-icon"
                   role="presentation"
@@ -81,11 +110,11 @@ function App() {
                 >
                   <use href="/icons.svg#discord-icon"></use>
                 </svg>
-                Discord
+                Not allowed
               </a>
             </li>
             <li>
-              <a href="https://x.com/vite_js" target="_blank">
+              <a href="https://x.com/hhswetr" target="_blank">
                 <svg
                   className="button-icon"
                   role="presentation"
@@ -97,16 +126,6 @@ function App() {
               </a>
             </li>
             <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
             </li>
           </ul>
         </div>

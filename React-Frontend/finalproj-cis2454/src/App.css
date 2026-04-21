@@ -55,7 +55,16 @@
       scale(0.8);
   }
 }
-
+form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+label {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
 #center {
   display: flex;
   flex-direction: column;
