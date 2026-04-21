@@ -25,30 +25,30 @@ switch ($method) {
 
 function handleGet($database) {
     $sql = "SELECT * FROM items";
-    $stmt = $database->prepare($sql);
-    $stmt->execute();
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $statement = $database->prepare($sql);
+    $statement->execute();
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($result);
 }
 
 function handlePost($database, $input) {
     $sql = "INSERT INTO items (store_id, name, quantity, checked) VALUES (:store_id, :name, :quantity, :checked)";
-    $stmt = $database->prepare($sql);
-    $stmt->execute(['name' => $input['name'], 'quantity' => $input['quantity'], 'store_id' => $input['store_id'], 'checked' => $input['checked']]);
+    $statement = $database->prepare($sql);
+    $statement->execute(['name' => $input['name'], 'quantity' => $input['quantity'], 'store_id' => $input['store_id'], 'checked' => $input['checked']]);
     echo json_encode(['message' => 'Product created successfully']);
 }
 
 function handlePut($database, $input) {
     $sql = "UPDATE items SET store_id = :store_id, name = :name, quantity = :quantity, checked = :checked WHERE id = :id";
-    $stmt = $database->prepare($sql);
-    $stmt->execute(['name' => $input['name'], 'quantity' => $input['quantity'], 'store_id' => $input['store_id'], 'checked' => $input['checked']]);
+    $statement = $database->prepare($sql);
+    $statement->execute(['name' => $input['name'], 'quantity' => $input['quantity'], 'store_id' => $input['store_id'], 'checked' => $input['checked']]);
     echo json_encode(['message' => 'Product updated successfully']);
 }
 
 function handleDelete($database, $input) {
     $sql = "DELETE FROM items WHERE id = :id";
-    $stmt = $database->prepare($sql);
-    $stmt->execute(['id' => $input['id']]);
+    $statement = $database->prepare($sql);
+    $statement->execute(['id' => $input['id']]);
     echo json_encode(['message' => 'Product deleted successfully']);
 }
 ?>
