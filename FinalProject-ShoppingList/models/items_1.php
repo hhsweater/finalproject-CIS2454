@@ -28,6 +28,7 @@ switch ($method) {
 }
 
 function handleGet($database) {
+    
     $sql = "SELECT * FROM items";
     $statement = $database->prepare($sql);
     $statement->execute();
@@ -45,7 +46,7 @@ function handlePost($database, $input) {
 function handlePut($database, $input) {
     $sql = "UPDATE items SET store_id = :store_id, name = :name, quantity = :quantity, checked = :checked WHERE id = :id";
     $statement = $database->prepare($sql);
-    $statement->execute(['name' => $input['name'], 'quantity' => $input['quantity'], 'store_id' => $input['store_id'], 'checked' => $input['checked']]);
+    $statement->execute(['id' => $input['id'], 'name' => $input['name'], 'quantity' => $input['quantity'], 'store_id' => $input['store_id'], 'checked' => $input['checked']]);
     echo json_encode(['message' => 'Product updated successfully']);
 }
 

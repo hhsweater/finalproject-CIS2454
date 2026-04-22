@@ -46,7 +46,7 @@ function handlePost($database, $input) {
 function handlePut($database, $input) {
     $sql = "UPDATE stores SET name = :name WHERE id = :id";
     $statement = $database->prepare($sql);
-    $statement->execute(['name' => $input['name']]);
+    $statement->execute(['id' => $input['id'], 'name' => $input['name']]);
     echo json_encode(['message' => 'Store updated successfully']);
 }
 
