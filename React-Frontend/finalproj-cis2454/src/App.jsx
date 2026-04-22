@@ -5,6 +5,8 @@ import heroImg from './assets/hero.png'
 import './App.css'
 import axios from 'axios';
 import cors from 'cors';
+import DisplayItems from './DisplayItems.jsx'
+import DisplayStores from './DisplayStores.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -40,11 +42,16 @@ function App() {
       console.error('Error:', error)
     }
   }
+
   
+  
+
 
   return (
     <>
       <section id="center">
+        <div id="addforms">
+        <h2>Add A New Item</h2>
         <form onSubmit={handleItemsSubmit}>
           <label>Store ID</label>
           <input type="number" name="store_id" placeholder="" value={itemsInput.store_id} onChange={handleItemsChange}/>
@@ -55,12 +62,26 @@ function App() {
           <label>Item Quantity</label>
           <input type="number" name="quantity" placeholder="" value={itemsInput.quantity} onChange={handleItemsChange}/>
           <br/>
-          <label>Checked? Y/N</label>
+          <label>Checked? 0/1</label>
           <input type="number" name="checked" placeholder="" value={itemsInput.checked} onChange={handleItemsChange}/>
           <br/>
           <button type="submit">Submit</button>
         </form>
+        <form onSubmit={handleStoresSubmit}>
+          <h2>Add A New Store</h2>
+          <label>Store Name</label>
+          <input id="storename" type="text" name="name" placeholder="" value={storesInput.name} onChange={handleStoresChange}/>
+          <button type="submit">Submit</button>
+        </form>
+          <br></br>
+        </div>
+        <div id="displayforms">
+          {DisplayItems()}
+          <br></br>
+          {DisplayStores()}
+        </div>
       </section>
+      
 
       <div className="ticks"></div>
 
@@ -102,18 +123,6 @@ function App() {
               </a>
             </li>
             <li>
-              <a href="https://discord.com" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Not allowed
-              </a>
-            </li>
-            <li>
               <a href="https://x.com/hhswetr" target="_blank">
                 <svg
                   className="button-icon"
@@ -122,7 +131,7 @@ function App() {
                 >
                   <use href="/icons.svg#x-icon"></use>
                 </svg>
-                X.com
+                Twitter
               </a>
             </li>
             <li>
